@@ -40,6 +40,7 @@ build/Release
 # Dependency directories
 node_modules/
 jspm_packages/
+*/node_modules/
 
 # Snowpack dependency directory (https://snowpack.dev/)
 web_modules/
@@ -69,6 +70,12 @@ web_modules/
 .env
 .env.*
 !.env.example
+
+# Specific environment files for backend and frontend
+backend/.env
+frontend/.env
+backend/.env.*
+frontend/.env.*
 
 # parcel-bundler cache (https://parceljs.org/)
 .cache
@@ -137,3 +144,68 @@ dist
 # Vite logs files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Temporary files
+tmp/
+temp/
+
+# Environment folders and files
+env/
+envs/
+environment/
+environments/
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Build outputs
+build/
+dist/
+
+# Lock files (keep package-lock.json but ignore others)
+*.lock
+!package-lock.json
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Cache directories
+.cache/
+.parcel-cache/
+.vuepress/cache/
+.svelte-kit/
+.vitepress/
+.docusaurus/
+
+# Runtime and process files
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Misc
+*.tgz
+.yarn-integrity
