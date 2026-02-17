@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Dashboard from "./pages/Dashboard";
 import Alerts from "./pages/Alerts";
+import Incidents from "./pages/Incidents";
 
 export default function App() {
   const [tab, setTab] = useState("dashboard");
@@ -28,6 +29,14 @@ export default function App() {
         </button>
         <button
           type="button"
+          className={`app-tab ${tab === "incidents" ? "active" : ""}`}
+          onClick={() => setTab("incidents")}
+        >
+          <span>📖</span>
+          <span>Incidents</span>
+        </button>
+        <button
+          type="button"
           className={`app-tab ${tab === "alerts" ? "active" : ""}`}
           onClick={() => setTab("alerts")}
         >
@@ -37,7 +46,13 @@ export default function App() {
       </div>
 
       <main className="app-main">
-        {tab === "dashboard" ? <Dashboard /> : <Alerts />}
+        {tab === "dashboard" ? (
+          <Dashboard />
+        ) : tab === "incidents" ? (
+          <Incidents />
+        ) : (
+          <Alerts />
+        )}
       </main>
     </div>
   );

@@ -10,12 +10,21 @@ router.get("/", async (req, res) => {
     const {
         event_type,
         src_ip,
-        lastMinutes
+        lastMinutes,
+        start,
+        end
     } = req.query;
 
     const query = {};
 
-    if (lastMinutes) {
+    // Optional time filters:
+    // - If `start` and/or `end` provided (ISO strings), use them.
+    // - Else if `lastMinutes` provided, use a relative window.
+    if (start || end) {
+        query.timestamp = {};
+        if (start) query.timestamp.$gte = new Date(start);
+        if (end) query.timestamp.$lte = new Date(end);
+    } else if (lastMinutes) {
         const since = new Date(Date.now() - lastMinutes * 60 * 1000);
         query.timestamp = { $gte: since };
     }
