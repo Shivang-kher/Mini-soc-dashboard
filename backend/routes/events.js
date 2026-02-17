@@ -10,14 +10,15 @@ router.get("/", async (req, res) => {
     const {
         event_type,
         src_ip,
-        lastMinutes = 60
+        lastMinutes
     } = req.query;
 
-    const since = new Date(Date.now() - lastMinutes * 60 * 1000);
+    const query = {};
 
-    const query = {
-        timestamp: { $gte: since }
-    };
+    if (lastMinutes) {
+        const since = new Date(Date.now() - lastMinutes * 60 * 1000);
+        query.timestamp = { $gte: since };
+    }
 
     if (event_type) query.event_type = event_type;
     if (src_ip) query.src_ip = src_ip;
